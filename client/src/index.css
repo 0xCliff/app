@@ -1,3 +1,45 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  --font: 'Quicksand', sans-serif;
+  --pastel-red: #fecaca;
+  --pastel-purple: #ca9ee6;
+  --pastel-green: #a6d189;
+  --black: #242634;
+  --slate: #313447;
+  --dark-slate: #2a2c3c;
+  --white: #C6D1F5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  font: 62.5%/1.5 var(--font);
+  background-color: var(--slate);
+}
+
+h1 {
+  font-size: 2.6em;
+}
+
+h2 {
+  font-size: 2.4em;
+}
+
+h3 {
+  font-size: 2.2em;
+}
+
+h4 {
+  font-size: 2em;
+}
+
+h5 {
+  font-size: 1.8em;
+}
+
+p {
+  font-size: 1.6em;
+}

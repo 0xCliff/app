@@ -1,35 +1,19 @@
-import "./index.css";
-import {useEffect, useState} from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import NavBar from './components/Navbar';
+import "./index.css";
+import Home from "./pages/home/Home";
+import Login from './pages/auth/Login';
+import NoMatch from './pages/NoMatch';
 
 function App() {
-  const [users, setUsers] = useState();
-
-  useEffect(() => {
-    fetch('http://localhost:8080/users', {
-      method: "GET",
-    })
-    .then(res => res.json())
-    .then(data => setUsers(data));
-  }, []);
-
-  console.log(users);
-
   return (
-    <div>
-      <NavBar/>
-      {users?.map(user => {
-        return (
-          <table key={user.id}>
-            <th>{user.name}</th>
-            <th>- {user.email}</th>
-            <th>- {user.password}</th>
-          </table>
-        )
-      })}
-      
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path='*' element={<NoMatch />} />
+      </Routes>
+    </Router>
   );
 }
 

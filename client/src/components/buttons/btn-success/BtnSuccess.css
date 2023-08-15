@@ -1,0 +1,34 @@
+.btn-success {
+    background-color: var(--pastel-green);
+    color: var(--black);
+
+    padding: 0.5rem 0;
+    width: 5rem;
+    border-radius: 5px;
+
+    font-size: 1.6em;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-success:hover {
+    background-color: var(--black);
+    color: var(--pastel-green);
+
+    border: 1px solid var(--pastel-green);
+    border-radius: 5px;
+    box-shadow: 0.1rem 0.1rem var(--pastel-green);
+
+    transition: 0.25s ease-out;
+}
+
+.btn-success:active {
+    background-color: var(--black);
+    color: var(--pastel-green);
+
+    border: 1px solid var(--pastel-green);
+    border-radius: 5px;
+    box-shadow: 0.01rem 0.05rem var(--pastel-green);
+
+    transition: 0.25s ease-out;
+}

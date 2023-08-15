@@ -1,0 +1,24 @@
+.navbar {
+    background-color: var(--black);
+    /* background-color: var(--dark-slate); */
+
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8rem;
+    position: sticky;
+    top: 0;
+}
+
+.nav-brand {
+    text-decoration: none;
+    color: var(--pastel-purple);
+}
+
+.btn-group {
+    width: 12rem;
+
+    display: flex;
+    justify-content: space-around;
+}
