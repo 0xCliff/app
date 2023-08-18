@@ -1,0 +1,18 @@
+### Create a user
+POST http://127.0.0.1:8080/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "email": "admin@site.com",
+  "password": "Password"
+}
+
+### Login
+POST http://127.0.0.1:8080/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Password"
+}

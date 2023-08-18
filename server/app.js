@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const db = require('./db/userQueries');
+const userQuery = require('./db/userQueries');
+const authQuery = require('./db/authQueries');
 
 const app = express();
 
@@ -14,11 +15,13 @@ app.use(
   })
 );
 
-app.get('/users', db.getUsers);
-app.get('/users/:id', db.getUserById);
-app.post('/users', db.createUser);
-app.put('/users/:id', db.updateUser);
-app.delete('/users/:id', db.deleteUser);
+app.get('/users', userQuery.getUsers);
+app.get('/users/:id', userQuery.getUserById);
+app.post('/users', userQuery.createUser);
+app.put('/users/:id', userQuery.updateUser);
+app.delete('/users/:id', userQuery.deleteUser);
+
+app.post('/login', authQuery.login);
 
 app.listen(8080, () => {
   console.log('Server listening on port 8080');

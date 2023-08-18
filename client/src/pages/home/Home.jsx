@@ -7,18 +7,18 @@ function Home() {
   const { isLoggedIn } = useContext(AuthContext);
   const [users, setUsers] = useState();
 
-  useEffect(() => {
-    fetch('http://localhost:8080/users', {
-      method: 'GET',
-    })
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch('http://localhost:8080/users', {
+  //     method: 'GET',
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => setUsers(data));
+  // }, []);
 
   return (
     <Layout>
       {isLoggedIn &&
-        users?.map((user) => {
+        users?.map(user => {
           return (
             <table key={user.id}>
               <th>{user.name}</th>
