@@ -1,15 +1,18 @@
-import BtnSuccess from '../buttons/btn-success/BtnSuccess';
 import './Navbar.css';
 
-function NavBar({ isLoggedIn, setIsLoggedIn }) {
+function NavBar() {
   return (
     <div className='navbar'>
       <a href='/' className='nav-brand'>
         <h1 className='nav-title'>App</h1>
       </a>
-      <div className="btn-group">
-        <BtnSuccess text='Sign in' route="/login" />
-        <BtnSuccess text='Sign up' route="/signup" />
+      <div className='btn-group'>
+        <a className='btn' href='/signup'>
+          Sign Up
+        </a>
+        <a className='btn' href='/login'>
+          Sign In
+        </a>
       </div>
     </div>
   );

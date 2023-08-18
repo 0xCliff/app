@@ -1,24 +1,45 @@
 .navbar {
-    background-color: var(--black);
-    /* background-color: var(--dark-slate); */
+  background-color: var(--black);
+  /* background-color: var(--dark-slate); */
 
-    height: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 8rem;
-    position: sticky;
-    top: 0;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8rem;
+  position: sticky;
+  top: 0;
 }
 
 .nav-brand {
-    text-decoration: none;
-    color: var(--pastel-purple);
+  text-decoration: none;
+  color: var(--pastel-purple);
 }
 
 .btn-group {
-    width: 12rem;
+  width: 12rem;
 
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn {
+  background-color: var(--pastel-green);
+  color: var(--black);
+
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  border-radius: 0.5em;
+}
+
+.btn:hover {
+  background-color: var(--black);
+  color: var(--pastel-green);
+
+  border: 1px solid var(--pastel-green);
+  box-shadow: 1px 1px var(--pastel-green);
+}
+
+.btn:active {
+  box-shadow: 0.5px 0.5px var(--pastel-green);
 }

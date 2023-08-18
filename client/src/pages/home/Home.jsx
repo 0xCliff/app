@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
 import Layout from '../../components/layout/Layout';
+import AuthContext from '../../context/authContext';
 
 function Home() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn } = useContext(AuthContext);
   const [users, setUsers] = useState();
 
   useEffect(() => {

@@ -6,7 +6,7 @@
   --black: #242634;
   --slate: #313447;
   --dark-slate: #2a2c3c;
-  --white: #C6D1F5;
+  --white: #c6d1f5;
 }
 
 * {
@@ -16,30 +16,35 @@
 }
 
 body {
-  font: 62.5%/1.5 var(--font);
+  font: 62.5% var(--font);
   background-color: var(--slate);
 }
 
 h1 {
-  font-size: 2.6em;
+  font-size: 2.8em;
 }
 
 h2 {
-  font-size: 2.4em;
+  font-size: 2.6em;
 }
 
 h3 {
-  font-size: 2.2em;
+  font-size: 2.4em;
 }
 
 h4 {
-  font-size: 2em;
+  font-size: 2.2em;
 }
 
 h5 {
-  font-size: 1.8em;
+  font-size: 2em;
 }
 
 p {
-  font-size: 1.6em;
+  font-size: 1.8em;
+}
+
+a,
+button {
+  font-size: 1.2em;
 }
