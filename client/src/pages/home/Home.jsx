@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 
-import Layout from '../../components/layout/Layout';
+import Layout from '../layout/Layout';
 import AuthContext from '../../context/authContext';
 
 function Home() {

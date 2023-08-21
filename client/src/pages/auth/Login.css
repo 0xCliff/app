@@ -1,7 +1,0 @@
-.container {
-    min-height: 100vh;
-
-    display: grid;
-    grid-template-columns: repeat(12, auto);
-    grid-template-rows: repeat(8, auto);
-  }

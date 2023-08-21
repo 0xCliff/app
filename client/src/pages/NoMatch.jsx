@@ -1,11 +1,7 @@
-import Layout from "../components/layout/Layout";
+import Layout from './layout/Layout';
 
 function NoMatch() {
-  return (
-    <Layout>
-
-    </Layout>
-  );
+  return <Layout></Layout>;
 }
 
 export default NoMatch;
