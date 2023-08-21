@@ -50,3 +50,112 @@ h5 {
 p {
   font-size: 1.2rem;
 }
+
+input[type='text'] {
+  font-size: 1rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  body {
+    font: 62.5% var(--font);
+    background-color: var(--slate);
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+  }
+
+  h4 {
+    font-size: 1.4rem;
+  }
+
+  h5 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  input[type='text'] {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    font: 62.5% var(--font);
+    background-color: var(--slate);
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  h5 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  input[type='text'] {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  body {
+    font: 62.5% var(--font);
+    background-color: var(--slate);
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  h5 {
+    font-size: 0.75rem;
+  }
+
+  p {
+    font-size: 0.75rem;
+  }
+
+  input[type='text'] {
+    font-size: 0.75rem;
+  }
+}

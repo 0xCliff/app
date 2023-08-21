@@ -15,7 +15,14 @@ function Input({ small, medium, large, type, placeholder, ...rest }) {
       }
     )
   );
-  return <input type={type} placeholder={placeholder} className={classes} />;
+  return (
+    <input
+      type={type}
+      placeholder={placeholder}
+      className={classes}
+      {...rest}
+    />
+  );
 }
 
 Input.propTypes = {
