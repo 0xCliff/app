@@ -3,7 +3,16 @@ import { twMerge } from 'tailwind-merge';
 
 import './Input.css';
 
-function Input({ small, medium, large, type, placeholder, ...rest }) {
+function Input({
+  value,
+  onChange,
+  small,
+  medium,
+  large,
+  type,
+  placeholder,
+  ...rest
+}) {
   const classes = twMerge(
     className(
       rest.className,
@@ -15,12 +24,15 @@ function Input({ small, medium, large, type, placeholder, ...rest }) {
       }
     )
   );
+
   return (
     <input
+      {...rest}
       type={type}
       placeholder={placeholder}
       className={classes}
-      {...rest}
+      value={value}
+      onChange={onChange}
     />
   );
 }

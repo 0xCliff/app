@@ -55,6 +55,10 @@ input[type='text'] {
   font-size: 1rem;
 }
 
+button {
+  font-size: 1rem;
+}
+
 @media only screen and (max-width: 1024px) {
   body {
     font: 62.5% var(--font);

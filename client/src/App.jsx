@@ -1,18 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import Home from './pages/home/Home';
-import Login from './pages/auth/login/Login';
-import NoMatch from './pages/NoMatch';
+import Layout from './pages/layout/Layout';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/signin' element={<Login />} />
-        <Route path='*' element={<NoMatch />} />
-      </Routes>
-    </Router>
+    <Layout>
+      <div>
+        <p>App</p>
+      </div>
+    </Layout>
   );
 }
 
