@@ -53,10 +53,12 @@ p {
 
 input[type='text'] {
   font-size: 1rem;
+  font-weight: 600;
 }
 
 button {
   font-size: 1rem;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 1024px) {

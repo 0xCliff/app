@@ -1,6 +1,6 @@
 const requireAuth = (req, res, next) => {
-  if (!req.session.user == req.body.user) {
-    res.status(401).send('You are not logged in');
+  if (!req.session.authenticated) {
+    return res.status(401).send('You are not logged in');
   }
   next();
 };

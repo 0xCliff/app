@@ -3,7 +3,7 @@ const register = require('./register');
 
 const logout = async (req, res) => {
   req.session = null;
-  return res.status(200).clearCookie('user', { path: '/' }).send();
+  res.status(200).clearCookie('connect.sid', { path: '/' }).send();
 };
 
 module.exports = {

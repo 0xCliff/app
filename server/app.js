@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
 const session = require('express-session');
 require('dotenv').config();
 
@@ -11,24 +10,25 @@ const requireAuth = require('./middleware/requireAuth');
 
 const app = express();
 
+const store = new session.MemoryStore();
 sessionConfig = {
   secret: process.env.KEY,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
     maxAge: 1000 * 60 * 60 * 24 * 7,
-    httpOnly: true,
+    httpOnly: false,
   },
+  store,
 };
 
 app.use(session(sessionConfig));
-app.use(cookieParser());
 app.use(
   cors({
     origin: 'http://localhost:3000',
     optionsSuccessStatus: 200,
-    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+    methods: ['POST', 'PUT', 'GET', 'DELETE'],
     credentials: true,
   })
 );

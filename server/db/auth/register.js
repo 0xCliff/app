@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
-var jwt = require('jsonwebtoken');
 require('dotenv').config();
+
+const userSchema = require('../schemas/User');
 
 const Pool = require('pg').Pool;
 const pool = new Pool({
@@ -11,11 +12,16 @@ const pool = new Pool({
   port: 5432,
 });
 
-const privateKey = process.env.KEY;
 const saltRounds = parseInt(process.env.ROUNDS);
 
 const register = async (req, res) => {
-  const { username, email, password } = req.body;
+  const validated = userSchema.validate(req.body);
+  if (!validated.error) {
+    const msg = validated.error.details.map(err => err.message).join(',');
+    return res.status(401).send(msg);
+  }
+
+  const { name, username, email, password } = req.body.user;
 
   const hashedPassword = await bcrypt
     .hash(password, saltRounds)
@@ -25,8 +31,8 @@ const register = async (req, res) => {
     .catch(err => console.log(err));
 
   await pool.query(
-    'INSERT INTO users (username, email, password) VALUES ($1, $2, $3)',
-    [username, email, hashedPassword],
+    'INSERT INTO users (name, username, password, email, created_on) VALUES ($1, $2, $3, $4, $5)',
+    [name, username, hashedPassword, email, new Date()],
     error => {
       if (error) {
         throw error;
@@ -34,19 +40,8 @@ const register = async (req, res) => {
     }
   );
 
-  const token = jwt.sign(username, privateKey, { algorithm: 'HS256' });
-  const sessionUser = {
-    id: token,
-    username: username,
-  };
-  req.session.user = sessionUser;
-  return res
-    .status(200)
-    .cookie('user', token, {
-      expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-    })
-    .send();
+  req.session.authenticated = true;
+  res.status(200).send();
 };
 
 module.exports = register;

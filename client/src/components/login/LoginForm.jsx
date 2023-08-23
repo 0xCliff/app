@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
-import useAuth from '../../hooks/useAuth';
+import useAuthContext from '../../hooks/useAuth';
 import Button from '../button/Button';
 import Input from '../input/Input';
 import Error from '../error/Error';
 import './LoginForm.css';
 
-function LoginForm() {
-  const { login, error } = useAuth();
+function LoginForm({ onClose }) {
+  const { login, error } = useAuthContext();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -23,13 +22,18 @@ function LoginForm() {
   const handleSubmit = event => {
     event.preventDefault();
 
-    login(username, password);
+    const user = {
+      username,
+      password,
+    };
+
+    login(user);
     setUsername('');
     setPassword('');
   };
 
   return (
-    <div className='p-5 max-h-min'>
+    <div>
       <div className='mb-5'>
         <div className='text-center'>
           <h1 className='mb-3 text-purple'>Log In</h1>
@@ -40,12 +44,15 @@ function LoginForm() {
         </div>
       </div>
       <div>
-        <form className='grid grid-cols-4 grid-rows-3' onSubmit={handleSubmit}>
+        <form
+          className='flex flex-col w-full items-center'
+          onSubmit={handleSubmit}
+        >
           <Input
             medium
             type='text'
             placeholder='Username'
-            className='w-3/4 row-start-1 col-span-4 place-self-center '
+            className='w-3/4'
             value={username}
             onChange={handleUsernameChange}
           />
@@ -53,16 +60,16 @@ function LoginForm() {
             medium
             type='text'
             placeholder='Password'
-            className='w-3/4 row-start-2 col-span-4 place-self-center'
+            className='w-3/4'
             value={password}
             onChange={handlePasswordChange}
           />
-          <div className='flex h-min row-start-3 col-start-2 col-span-2 justify-center'>
+          <div className='flex w-full justify-center mb-5'>
             <Button type='submit' primary rounded className='mr-3'>
               Sign In
             </Button>
-            <Button danger rounded>
-              <Link to='/'>Cancel</Link>
+            <Button danger rounded onClick={onClose}>
+              Cancel
             </Button>
           </div>
         </form>

@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
-var jwt = require('jsonwebtoken');
 require('dotenv').config();
+const authSchema = require('../schemas/Auth');
 
 const Pool = require('pg').Pool;
 const pool = new Pool({
@@ -11,10 +11,14 @@ const pool = new Pool({
   port: 5432,
 });
 
-const privateKey = process.env.KEY;
-
 const login = async (req, res) => {
-  const { username, password } = req.body;
+  const validated = authSchema.validate(req.body);
+  if (validated.error) {
+    return res.status(401).send('Invalid Username or Password');
+  }
+
+  const { username, password } = req.body.user;
+
   const user = await pool.query('SELECT * FROM users WHERE username = $1', [
     username,
   ]);
@@ -30,19 +34,8 @@ const login = async (req, res) => {
     return res.status(401).send('Invalid Username or Password');
   }
 
-  const token = jwt.sign(username, privateKey, { algorithm: 'HS256' });
-  const sessionUser = {
-    id: token,
-    username: username,
-  };
-  req.session.user = sessionUser;
-  return res
-    .status(200)
-    .cookie('user', token, {
-      expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-    })
-    .send();
+  req.session.authenticated = true;
+  res.status(200).send();
 };
 
 module.exports = login;

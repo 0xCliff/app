@@ -6,13 +6,13 @@ const AuthContext = createContext();
 
 function Provider({ children }) {
   const [error, setError] = useState(null);
-  const [cookies, getCookie] = useCookies(['user']);
+  const [cookies] = useCookies(['connect.sid']);
 
-  const login = async (username, password) => {
+  const login = async user => {
     let result = await axios
       .post(
         'http://localhost:8080/api/login',
-        { username, password },
+        { user },
         {
           withCredentials: true,
           headers: {
@@ -28,22 +28,23 @@ function Provider({ children }) {
     }
   };
 
-  console.log(cookies);
   const logout = async () => {
-    const user = getCookie('user');
     await axios
       .post(
         'http://localhost:8080/api/logout',
-        { user: user },
-        { withCredentials: true }
+        {},
+        {
+          withCredentials: true,
+        }
       )
       .then(window.location.replace('/'))
-      .catch(err => console.error(err));
+      .catch(err => setError(err));
   };
 
   const valueToShare = {
     login,
     error,
+    setError,
     logout,
     cookies,
   };
