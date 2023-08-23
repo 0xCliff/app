@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt');
+require('dotenv').config();
+
 const Pool = require('pg').Pool;
 const pool = new Pool({
   user: process.env.USER,
@@ -8,7 +10,7 @@ const pool = new Pool({
   port: 5432,
 });
 
-const saltRounds = 10;
+const saltRounds = parseInt(process.env.ROUNDS);
 
 const getUsers = async (req, res) => {
   await pool.query(
@@ -32,28 +34,6 @@ const getUserById = async (req, res) => {
         throw error;
       }
       res.status(200).json(results.rows);
-    }
-  );
-};
-
-const createUser = async (req, res) => {
-  const { username, email, password } = req.body;
-
-  const hashedPassword = await bcrypt
-    .hash(password, saltRounds)
-    .then(hash => {
-      return hash;
-    })
-    .catch(err => console.log(err));
-
-  await pool.query(
-    'INSERT INTO users (username, email, password) VALUES ($1, $2, $3)',
-    [username, email, hashedPassword],
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
-      res.status(201).send(`User added with ID: ${results.insertId}`);
     }
   );
 };
@@ -99,7 +79,6 @@ const deleteUser = async (req, res) => {
 module.exports = {
   getUsers,
   getUserById,
-  createUser,
   updateUser,
   deleteUser,
 };

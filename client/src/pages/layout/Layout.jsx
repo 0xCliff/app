@@ -1,4 +1,4 @@
-import NavBar from '../../components/navbar/Navbar';
+import NavBar from '../../components/NavBar/Navbar';
 import useAuthContext from '../../hooks/useAuth';
 
 function Layout({ children }) {
@@ -6,7 +6,7 @@ function Layout({ children }) {
 
   return (
     <div>
-      <NavBar value={cookies.sessionId} onChange={logout} />
+      <NavBar value={cookies.user} onChange={logout} />
       <div className='container mx-auto'>{children}</div>
     </div>
   );

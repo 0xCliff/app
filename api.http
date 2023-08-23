@@ -1,18 +1,45 @@
-### Create a user
-POST http://127.0.0.1:8080/users HTTP/1.1
+### Register
+POST http://127.0.0.1:8080/api/signup HTTP/1.1
 Content-Type: application/json
 
 {
-  "username": "admin",
-  "email": "admin@site.com",
-  "password": "Password"
+  "username": "bob",
+  "email": "bob@site.com",
+  "password": "qwerty"
 }
 
 ### Login
-POST http://127.0.0.1:8080/login HTTP/1.1
+POST http://127.0.0.1:8080/api/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "username": "admin",
-  "password": "Password"
+  "username": "sarah",
+  "password": "qwerty123"
 }
+
+### Logout
+POST http://127.0.0.1:8080/api/logout HTTP/1.1
+Content-Type: application/json
+
+{
+  "user": "eyJhbGciOiJIUzI1NiJ9.YWRtaW4.69o14aKN1y0WEkJUhDawIyor0QIaR5aYxTLJ0yDSFS0"
+}
+
+### Get users
+GET http://127.0.0.1:8080/api/users HTTP/1.1
+
+### Get use by id
+GET http://127.0.0.1:8080/api/users/1 HTTP/1.1
+
+### Remove a user
+DELETE http://127.0.0.1:8080/api/users/5 HTTP/1.1
+
+### Update a user
+PUT http://127.0.0.1:8080/api/users/1 HTTP/1.1
+Content-Type: application/json
+
+{
+
+}
+
+

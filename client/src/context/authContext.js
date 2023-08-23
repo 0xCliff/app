@@ -3,18 +3,18 @@ import axios from 'axios';
 import { CookiesProvider, useCookies } from 'react-cookie';
 
 const AuthContext = createContext();
-const URL = 'http://localhost:8080/login';
 
 function Provider({ children }) {
   const [error, setError] = useState(null);
-  const [cookies, setCookie, removeCookie] = useCookies(['sessionId']);
+  const [cookies, getCookie] = useCookies(['user']);
 
   const login = async (username, password) => {
     let result = await axios
       .post(
-        URL,
+        'http://localhost:8080/api/login',
         { username, password },
         {
+          withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
           },
@@ -24,14 +24,21 @@ function Provider({ children }) {
       .catch(err => setError(err.response.data));
 
     if (result) {
-      setCookie('sessionId', result.data);
       window.location.replace('/index');
     }
   };
 
-  const logout = () => {
-    removeCookie('sessionId');
-    window.location.replace('/');
+  console.log(cookies);
+  const logout = async () => {
+    const user = getCookie('user');
+    await axios
+      .post(
+        'http://localhost:8080/api/logout',
+        { user: user },
+        { withCredentials: true }
+      )
+      .then(window.location.replace('/'))
+      .catch(err => console.error(err));
   };
 
   const valueToShare = {
